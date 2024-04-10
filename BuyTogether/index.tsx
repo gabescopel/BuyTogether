@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useProduct } from "vtex.product-context";
 import { useDevice } from "vtex.device-detector";
 import { ProductSummaryTogether } from "./ProductSummaryTogether";
-import { Product } from "../typings/global";
-import { formatPrice } from "../utils/utils";
 import { BuyBoxTogether } from "./BuyBoxTogether";
+import { Product } from "../../typings/global";
+import { formatPrice } from "../../utils";
+import { baseClass } from "../../utils/baseClass";
 
 function mapSKUItems(products: Product[] | any) {
   const productsFilter = products.map((el: Product) => {
@@ -91,7 +92,7 @@ export const CompreJunto = () => {
     fetchData();
   }, [product?.productId]);
 
-  if(!productList.length) return <></>
+  if(!productList.length) return <></>;
 
   const styleDevice = isMobile ? {
     display: 'grid',
@@ -109,12 +110,15 @@ export const CompreJunto = () => {
   };
 
   return (
-    <ul style={styleDevice}>
-      <li style={{
-        display: 'flex',
-        flexDirection: 'column',
-        border: '1px solid #ededed'
-      }}>
+    <ul className={`${baseClass}BuyTogheter`} style={styleDevice}>
+      <li
+        className={`${baseClass}together-card`}
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          border: '1px solid #ededed'
+        }}
+      >
         <div style={{ borderBottom: '1px solid #ededed' }}>
           <button
             disabled
@@ -150,7 +154,7 @@ export const CompreJunto = () => {
           backgroundColor: '#f7f7f7',
           height: '100%'
         }}>
-          <h3 style={isMobile ? {fontSize: '.75rem'} : {fontSize: '1rem'}}>
+          <h3 style={isMobile ? {fontSize: '.75rem', marginTop: 0,} : {fontSize: '1rem', marginTop: 0,}}>
             <span>
               {product.productName}
             </span>
@@ -158,10 +162,10 @@ export const CompreJunto = () => {
           <div>
             { listPrice > priceBuy &&
               <span style={{textDecoration: 'line-through'}}>
-                R${formatPrice(listPrice)}
+                R$ {formatPrice(listPrice)}
               </span> }
             <span>
-              R${formatPrice(priceBuy)}
+              R$ {formatPrice(priceBuy)}
             </span>
           </div>
         </div>
@@ -176,7 +180,7 @@ export const CompreJunto = () => {
         />
       ))}
 
-      <BuyBoxTogether selectedItems={selectedItems}/>
+      <BuyBoxTogether productList={productList} selectedItems={selectedItems}/>
     </ul>
   );
 };

@@ -1,11 +1,12 @@
 import React from 'react';
 import { useDevice } from 'vtex.device-detector';
 import { formatPrice } from '../../utils';
-
+import { baseClass } from '../../utils/baseClass';
+import { Product, ICartItem } from '../../typings/global';
 interface ProductSummaryTogether {
-  productItem: any,
+  productItem: Product,
   setProductList?: any,
-  selectedItems: any,
+  selectedItems: ICartItem[],
   setSelectedItems: any,
 }
 
@@ -53,11 +54,14 @@ export const ProductSummaryTogether = ({
 
   return (
     <>
-      <li style={{
-        display: 'flex',
-        flexDirection: 'column',
-        border: '1px solid #ededed'
-      }}>
+      <li
+        className={`${baseClass}together-card`}
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          border: '1px solid #ededed'
+        }}
+      >
         <div style={{ borderBottom: '1px solid #ededed' }}>
           <button
             style={{
@@ -101,7 +105,7 @@ export const ProductSummaryTogether = ({
           backgroundColor: '#f7f7f7',
           height: '100%'
         }}>
-          <h3 style={isMobile ? {fontSize: '.75rem'} : {fontSize: '1rem'}}>
+          <h3 style={isMobile ? {fontSize: '.75rem', marginTop: 0,} : {fontSize: '1rem', marginTop: 0,}}>
             <span>
               {productItem.productName}
             </span>
@@ -109,10 +113,10 @@ export const ProductSummaryTogether = ({
           <div>
             { listPrice > priceBuy &&
               <span style={{textDecoration: 'line-through'}}>
-                R${formatPrice(listPrice)}
+                R$ {formatPrice(listPrice)}
               </span> }
             <span>
-              R${formatPrice(priceBuy)}
+              R$ {formatPrice(priceBuy)}
             </span>
           </div>
         </div>
