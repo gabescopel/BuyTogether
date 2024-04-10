@@ -2,7 +2,6 @@ import React from "react";
 import { useOrderItems } from 'vtex.order-items/OrderItems';
 import { usePixel } from 'vtex.pixel-manager';
 
-
 export const BuyBoxTogether = ({
   selectedItems,
 }: any) => {

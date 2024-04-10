@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useProduct } from "vtex.product-context";
 import { useDevice } from "vtex.device-detector";
 import { ProductSummaryTogether } from "./ProductSummaryTogether";
-import { Product } from "../../typings/global";
-import { formatPrice } from "../../utils";
+import { Product } from "../typings/global";
+import { formatPrice } from "../utils/utils";
 import { BuyBoxTogether } from "./BuyBoxTogether";
 
 function mapSKUItems(products: Product[] | any) {
